@@ -5,10 +5,9 @@ set( MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full" )
 
 # Set include directories
 include_directories(
-	cfe_hdr_files/cfe_mission_cfg.h
-	cfe_hdr_files/cfe_msgids.h
-	cfe_hdr_files/cfe_platform_cfg.h
-	cfe_hdr_files/osconfig.h
+	../mission_inc
+	../platform_inc
+	cfe_hdr_files
 	${CMAKE_CURRENT_SOURCE_DIR}
 	${CFE_INC_DIRS}
 	${OSAL_INC_DIRS}
@@ -23,9 +22,8 @@ set(CMAKE_C_FLAGS "-g -O0 -Wformat=0 -Wno-pointer-to-int-cast -Wno-int-to-pointe
 add_executable(HK-UT 
 		${CMAKE_CURRENT_SOURCE_DIR}/utf_test_hk.c
 		${APP_SRC}
-		${APP_CUSTOM_SRC}
 		${UTF_SRC})
-target_link_libraries(SCH-UT -fprofile-arcs gcov ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(HK-UT -fprofile-arcs gcov ${CMAKE_THREAD_LIBS_INIT})
 
 # We need to both run the test and compare the as-run with the expected output
 # with a diff command. 

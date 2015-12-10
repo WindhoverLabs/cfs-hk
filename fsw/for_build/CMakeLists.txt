@@ -21,7 +21,7 @@ add_library(${APP_FILE} SHARED ${APP_SRC})
 add_library(hk_cpy_tbl STATIC ${TABLE_DIR}/hk_cpy_tbl.c)
 set_target_properties(hk_cpy_tbl PROPERTIES PREFIX "" SUFFIX ".tbl")
 
-#add_subdirectory(../unit_test unit_test)
+add_subdirectory(../unit_test unit_test)
 
 # Generate documentation
 find_package(Doxygen)
