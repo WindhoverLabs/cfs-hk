@@ -226,94 +226,95 @@ INFO EVENT ID=37 HK Successfully Updated 'HK.CopyTable'
 ------------------------------------------------------------------
 <utf_hk_test:CFE_SB_SubscribeHook> Subscribe returning ok Cnt = 46
 ------------------------------------------------------------------
-INFO EVENT ID=1 HK Initialized.  Version 0.0.0.0
+INFO EVENT ID=1 HK Initialized.  Version 2.4.0.0
 
  *** <sbsim.in> START HK COMMAND TESTING ***
  -------------------------------------------
 
  <sbsim.in> Housekeeping Request
  -------------------------------
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0000 0000 0000 0000 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0000 0000 0000 0000 e2d8 080a 
 
 
  <sbsim.in> Housekeeping Request with invalid size
  -------------------------------------------------
-< CMD: APID:009b SEQ:0 LEN:9 FC:0 PKT:189b c000 0002 0000 0000 
+< CMD: APID:009b SEQ:0 LEN:9 FC:0 PKT:9b18 00c0 0200 0000 0000 
 ERROR EVENT ID=28 Msg with Bad length Rcvd: ID = 0x189B, Exp Len = 8, Len = 9
 
 
  <sbsim.in> NOOP Command Test
  ----------------------------
-< CMD: APID:009a SEQ:0 LEN:8 FC:0 PKT:189a c000 0001 0000 
-INFO EVENT ID=4 HK No-op command, Version 0.0.0.0
+< CMD: APID:009a SEQ:0 LEN:8 FC:0 PKT:9a18 00c0 0100 0000 
+INFO EVENT ID=4 HK No-op command, Version 2.4.0.0
 
 
  <sbsim.in> NOOP Command Test with invalid size
  ----------------------------------------------
-< CMD: APID:009a SEQ:0 LEN:10 FC:0 PKT:189a c000 0003 0000 0000 
+< CMD: APID:009a SEQ:0 LEN:10 FC:0 PKT:9a18 00c0 0300 0000 0000 
 ERROR EVENT ID=3 Cmd Msg with Bad length Rcvd: ID = 0x189A, CC = 0, Exp Len = 8, Len = 10
 
 
  <sbsim.in> Reset Counters Command Test
  --------------------------------------
-< CMD: APID:009a SEQ:0 LEN:8 FC:1 PKT:189a c000 0001 0100 
+< CMD: APID:009a SEQ:0 LEN:8 FC:1 PKT:9a18 00c0 0100 0100 
 DEBUG EVENT ID=5 HK Reset Counters command received
 
 
  <sbsim.in> Reset Counters Cmd with invalid size 
  -----------------------------------------------
-< CMD: APID:009a SEQ:0 LEN:11 FC:1 PKT:189a c000 0004 0100 0000 0000 
+< CMD: APID:009a SEQ:0 LEN:11 FC:1 PKT:9a18 00c0 0400 0100 0000 0000 
 ERROR EVENT ID=3 Cmd Msg with Bad length Rcvd: ID = 0x189A, CC = 1, Exp Len = 8, Len = 11
 
 
  <sbsim.in> Invalid Command Code 
  -------------------------------
-< CMD: APID:009a SEQ:0 LEN:11 FC:5 PKT:189a c000 0004 0500 0000 0000 
+< CMD: APID:009a SEQ:0 LEN:11 FC:5 PKT:9a18 00c0 0400 0500 0000 0000 
 ERROR EVENT ID=2 Cmd Msg with Invalid command code Rcvd -- ID = 0x189A, CC = 5
 
 
  <sbsim.in> Send Output Pkt Command Test (packet output depends on HK_DISCARD_INCOMPLETE_COMBO setting)
  ------------------------------------------------------------------------------------------------------
-< CMD: APID:009c SEQ:0 LEN:10 FC:1 PKT:189c c000 0003 0100 089c 
+< CMD: APID:009c SEQ:0 LEN:10 FC:1 PKT:9c18 00c0 0300 0100 089c 
 DEBUG EVENT ID=12 Combined Packet 0x089C missing data from Input Pkt 0x0801
+> TLM: APID:009c SEQ:0 LEN:32 TIME:00000000 00000000 PKT:9c08 00c0 1900 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 
 
 
  <sbsim.in> Send Output Pkt Cmd with invalid size 
  ------------------------------------------------
-< CMD: APID:009c SEQ:0 LEN:8 FC:1 PKT:189c c000 0001 0100 
+< CMD: APID:009c SEQ:0 LEN:8 FC:1 PKT:9c18 00c0 0100 0100 
 ERROR EVENT ID=28 Msg with Bad length Rcvd: ID = 0x189C, Exp Len = 10, Len = 8
 
 
  <sbsim.in> Send Output Pkt Cmd with invalid parameter 
  -----------------------------------------------------
-< CMD: APID:009c SEQ:0 LEN:10 FC:1 PKT:189c c000 0003 0100 0855 
+< CMD: APID:009c SEQ:0 LEN:10 FC:1 PKT:9c18 00c0 0300 0100 0855 
 INFO EVENT ID=11 Combined HK Packet 0x0855 is not found in current HK Copy Table
 
 
  <sbsim.in> Send housekeeping pkt from another app that is not currently in copy table 
  -------------------------------------------------------------------------------------
-< CMD: APID:0099 SEQ:0 LEN:10 FC:1 PKT:1899 c000 0003 0100 feed 
+< CMD: APID:0099 SEQ:0 LEN:10 FC:1 PKT:9918 00c0 0300 0100 feed 
 
 
  <sbsim.in> Send housekeeping pkt from another app that is in copy table, but pkt is too small
  ---------------------------------------------------------------------------------------------
-< TLM: APID:0003 SEQ:0 LEN:12 TIME:feed0100 00990000 PKT:0803 c000 0005 0100 feed 0099 
+< TLM: APID:0003 SEQ:0 LEN:12 TIME:feed0100 00990000 PKT:0308 00c0 0500 0100 feed 0099 
 ERROR EVENT ID=6 HK table definition exceeds packet length. MID:0x0803, Length:12, Count:1
 
 
  <sbsim.in> Send housekeeping pkt from another app that is in copy table, pkt not too small
  ------------------------------------------------------------------------------------------
-< TLM: APID:0003 SEQ:0 LEN:34 TIME:feed0100 00990000 PKT:0803 c000 001b 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 1213 1415 
+< TLM: APID:0003 SEQ:0 LEN:34 TIME:feed0100 00990000 PKT:0308 00c0 1b00 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 1213 1415 
 
  <sbsim.in> Send housekeeping pkts to complete combo packet and send combo packet
  --------------------------------------------------------------------------------
-< TLM: APID:0001 SEQ:0 LEN:26 TIME:feed0100 00990000 PKT:0801 c000 0013 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 
-< TLM: APID:0000 SEQ:0 LEN:30 TIME:feed0100 00990000 PKT:0800 c000 0017 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 
-< TLM: APID:0004 SEQ:0 LEN:38 TIME:feed0100 00990000 PKT:0804 c000 001f 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 1213 1415 1617 0000 
-< TLM: APID:0005 SEQ:0 LEN:42 TIME:feed0100 00990000 PKT:0805 c000 0023 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 1213 1415 1617 1819 0000 0000 
-< CMD: APID:009c SEQ:0 LEN:10 FC:1 PKT:189c c000 0003 0100 089c 
-> TLM: APID:009c SEQ:0 LEN:32 TIME:00000000 00000000 PKT:089c c000 0019 0000 0000 0000 0102 0304 0102 0304 0102 0304 0102 0304 0102 0304 
+< TLM: APID:0001 SEQ:0 LEN:26 TIME:feed0100 00990000 PKT:0108 00c0 1300 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 
+< TLM: APID:0000 SEQ:0 LEN:30 TIME:feed0100 00990000 PKT:0008 00c0 1700 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 
+< TLM: APID:0004 SEQ:0 LEN:38 TIME:feed0100 00990000 PKT:0408 00c0 1f00 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 1213 1415 1617 0000 
+< TLM: APID:0005 SEQ:0 LEN:42 TIME:feed0100 00990000 PKT:0508 00c0 2300 0100 feed 0099 0102 0304 0506 0708 090a 0b0c 0d0e 0f10 1112 1213 1415 1617 1819 0000 0000 
+< CMD: APID:009c SEQ:0 LEN:10 FC:1 PKT:9c18 00c0 0300 0100 089c 
+> TLM: APID:009c SEQ:0 LEN:32 TIME:00000000 00000000 PKT:9c08 00c0 1900 0000 0000 0000 0102 0304 0102 0304 0102 0304 0102 0304 0102 0304 
 
  *** <sbsim.in> END HK COMMAND TESTING ***
 
@@ -333,11 +334,11 @@ File_Name is /cf/apps/hk_cpy_tbl2.tbl
 Call to CFE_TBL_ValidateAccess returned 0
 Call to CFE_TBL_LoadFromFile returned 0
 Call to CFE_TBL_LoadWorkingBuffer returns 0
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
 INFO EVENT ID=36 HK validation successful for Inactive 'HK.CopyTable'
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
 INFO EVENT ID=37 HK Successfully Updated 'HK.CopyTable'
 <utf_hk_test:CFE_SB_SubscribeHook> Subscribe returning ok Cnt = 47
 ------------------------------------------------------------------
@@ -364,8 +365,8 @@ File_Name is /cf/apps/hk_cpy_tbl.tbl
 Call to CFE_TBL_ValidateAccess returned 0
 Call to CFE_TBL_LoadFromFile returned 0
 Call to CFE_TBL_LoadWorkingBuffer returns 0
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
 ERROR EVENT ID=10 Unexpected CFE_TBL_GetStatus return (0xFFFFFFFF) for Copy Table
 ERROR EVENT ID=27 Unexpected CFE_TBL_GetStatus return (0xFFFFFFFF) for Runtime Table
 UTF Info: Return code for CFE TBL Api #11 returned to default
@@ -383,11 +384,11 @@ File_Name is /cf/apps/hk_cpy_tbl.tbl
 Call to CFE_TBL_ValidateAccess returned 0
 Call to CFE_TBL_LoadFromFile returned 0
 Call to CFE_TBL_LoadWorkingBuffer returns 0
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
 INFO EVENT ID=36 HK validation successful for Inactive 'HK.CopyTable'
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
 INFO EVENT ID=37 HK Successfully Updated 'HK.CopyTable'
 <utf_hk_test:CFE_SB_SubscribeHook> Subscribe returning ok Cnt = 52
 ------------------------------------------------------------------
@@ -415,16 +416,16 @@ File_Name is /cf/apps/hk_cpy_tbl.tbl
 Call to CFE_TBL_ValidateAccess returned 0
 Call to CFE_TBL_LoadFromFile returned 0
 Call to CFE_TBL_LoadWorkingBuffer returns 0
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
 INFO EVENT ID=36 HK validation successful for Inactive 'HK.CopyTable'
-< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:189b c000 0001 0000 
-> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:089b c000 0011 0000 0000 0000 0200 0000 0001 0001 4778 0815 
-ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x0815490C ret 0xFFFFFFFF, hdl 0x08154778
-ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x0815490C ret 0xFFFFFFFF, hdl 0x08154778
-ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x0815490C ret 0xFFFFFFFF, hdl 0x08154778
-ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x0815490C ret 0xFFFFFFFF, hdl 0x08154778
-ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x0815490C ret 0xFFFFFFFF, hdl 0x08154778
+< CMD: APID:009b SEQ:0 LEN:8 FC:0 PKT:9b18 00c0 0100 0000 
+> TLM: APID:009b SEQ:0 LEN:24 TIME:00000000 00000000 PKT:9b08 00c0 1100 0000 0000 0000 0200 0000 0002 0001 e2d8 080a 
+ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x080AE46C ret 0xFFFFFFFF, hdl 0x080ae2d8
+ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x080AE46C ret 0xFFFFFFFF, hdl 0x080ae2d8
+ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x080AE46C ret 0xFFFFFFFF, hdl 0x080ae2d8
+ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x080AE46C ret 0xFFFFFFFF, hdl 0x080ae2d8
+ERROR EVENT ID=9 HK TearDown: ES_putPoolBuf Err pkt:0x080AE46C ret 0xFFFFFFFF, hdl 0x080ae2d8
 INFO EVENT ID=37 HK Successfully Updated 'HK.CopyTable'
 ERROR EVENT ID=7 HK Processing New Table: ES_GetPoolBuf for size 32 returned 0xFFFFFFFF
 <utf_hk_test:CFE_SB_SubscribeHook> Subscribe returning ok Cnt = 57
@@ -452,7 +453,7 @@ ERROR EVENT ID=7 HK Processing New Table: ES_GetPoolBuf for size 32 returned 0xF
  <sbsim.in> SB RcvMsg Error causing HK App to Exit
  -------------------------------------------------
 UTF Info: Return value for CFE SB Api #5 set to ca000006
-< CMD: APID:009a SEQ:0 LEN:8 FC:0 PKT:189a c000 0001 0000 
+< CMD: APID:009a SEQ:0 LEN:8 FC:0 PKT:9a18 00c0 0100 0000 
 ERROR EVENT ID=26 HK_APP Exiting due to CFE_SB_RcvMsg error 0xCA000006
 SysLog:1980-001-00:00:00.00000 HK_APP Exiting due to CFE_SB_RcvMsg error 0xCA000006
 SysLog:1980-001-00:00:00.00000 Application HK called CFE_ES_ExitApp

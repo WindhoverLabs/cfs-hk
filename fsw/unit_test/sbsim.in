@@ -33,78 +33,78 @@
 *
 * <sbsim.in> Housekeeping Request
 * -------------------------------
-189B C000 0001 0000
+9B18 00C0 0100 0000
 *
 *
 * <sbsim.in> Housekeeping Request with invalid size
 * -------------------------------------------------
-189B C000 0002 0000
+9B18 00C0 0200 0000
 *
 *
 * <sbsim.in> NOOP Command Test
 * ----------------------------
-189A C000 0001 0000
+9A18 00C0 0100 0000
 *
 *
 * <sbsim.in> NOOP Command Test with invalid size
 * ----------------------------------------------
-189A C000 0003 0000
+9A18 00C0 0300 0000
 *
 *
 * <sbsim.in> Reset Counters Command Test
 * --------------------------------------
-189A C000 0001 0100
+9A18 00C0 0100 0100
 *
 *
 * <sbsim.in> Reset Counters Cmd with invalid size 
 * -----------------------------------------------
-189A C000 0004 0100
+9A18 00C0 0400 0100
 *
 *
 * <sbsim.in> Invalid Command Code 
 * -------------------------------
-189A C000 0004 0500
+9A18 00C0 0400 0500
 *
 *
 * <sbsim.in> Send Output Pkt Command Test (packet output depends on HK_DISCARD_INCOMPLETE_COMBO setting)
 * ------------------------------------------------------------------------------------------------------
-;189C C000 0003 0100 099C
-189C C000 0003 0100 089C
+;9C18 00C0 0300 0100 099C
+9C18 00C0 0300 0100 089C
 *
 *
 * <sbsim.in> Send Output Pkt Cmd with invalid size 
 * ------------------------------------------------
-189C C000 0001 0100 
+9C18 00C0 0100 0100 
 *
 *
 * <sbsim.in> Send Output Pkt Cmd with invalid parameter 
 * -----------------------------------------------------
-189C C000 0003 0100 0855
+9C18 00C0 0300 0100 0855
 *
 *
 * <sbsim.in> Send housekeeping pkt from another app that is not currently in copy table 
 * -------------------------------------------------------------------------------------
-1899 C000 0003 0100 FEED
+9918 00C0 0300 0100 FEED
 *
 *
 * <sbsim.in> Send housekeeping pkt from another app that is in copy table, but pkt is too small
 * ---------------------------------------------------------------------------------------------
-;0820 C000 0005 0100 FEED 0099
-0803 C000 0005 0100 FEED 0099
+;2008 00C0 0500 0100 FEED 0099
+0308 00C0 0500 0100 FEED 0099
 *
 *
 * <sbsim.in> Send housekeeping pkt from another app that is in copy table, pkt not too small
 * ------------------------------------------------------------------------------------------
-;0820 C000 001B 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 
-0803 C000 001B 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 
+;0820 00C0 1B00 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 
+0308 00C0 1B00 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 
 *
 * <sbsim.in> Send housekeeping pkts to complete combo packet and send combo packet
 * --------------------------------------------------------------------------------
-0801 C000 0013 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112  
-0800 C000 0017 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 
-0804 C000 001F 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 1617
-0805 C000 0023 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 1617 1819
-189C C000 0003 0100 089C
+0108 00C0 1300 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112  
+0008 00C0 1700 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 
+0408 00C0 1F00 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 1617
+0508 00C0 2300 0100 FEED 0099 0102 0304 0506 0708 090A 0B0C 0D0E 0F10 1112 1213 1415 1617 1819
+9C18 00C0 0300 0100 089C
 *
 * *** <sbsim.in> END HK COMMAND TESTING ***
 *
@@ -116,8 +116,8 @@
 * ------------------------------------------- 
 * Load file hk_cpy_tbl2.tbl to /cf/apps
 @ LOAD_TABLE_FROM_GROUND  HK.CopyTable /cf/apps/hk_cpy_tbl2.tbl
-189B C000 0001 0000    ; Housekeeping Request for validate
-189B C000 0001 0000    ; Housekeeping Request for update
+9B18 00C0 0100 0000    ; Housekeeping Request for validate
+9B18 00C0 0100 0000    ; Housekeeping Request for update
 *
 *
 *
@@ -125,7 +125,7 @@
 * ---------------------------------------------------------- 
 @ SET_TBL_RETURN_CODE 11 0xffffffff ;fails getstatus call
 @ LOAD_TABLE_FROM_GROUND  HK.CopyTable /cf/apps/hk_cpy_tbl.tbl
-189B C000 0001 0000    ; Housekeeping Request causes GetStatus to be called
+9B18 00C0 0100 0000    ; Housekeeping Request causes GetStatus to be called
 @ SET_DEFAULT_TBL_RETURN_CODE 11
 *
 *
@@ -133,8 +133,8 @@
 * --------------------------------------------------------- 
 @ SET_SB_RETURN_CODE 2 0xffffffff ;fails subscribe call
 @ LOAD_TABLE_FROM_GROUND  HK.CopyTable /cf/apps/hk_cpy_tbl.tbl
-189B C000 0001 0000    ; Housekeeping Request causes subscribe to be called
-189B C000 0001 0000    ; Housekeeping Request causes subscribe to be called
+9B18 00C0 0100 0000    ; Housekeeping Request causes subscribe to be called
+9B18 00C0 0100 0000    ; Housekeeping Request causes subscribe to be called
 @ SET_DEFAULT_SB_RETURN_CODE 2
 *
 *
@@ -143,8 +143,8 @@
 @ SET_ES_RETURN_CODE 25 0xffffffff ;fails get pool call
 @ SET_ES_RETURN_CODE 26 0xffffffff ;fails put pool call
 @ LOAD_TABLE_FROM_GROUND  HK.CopyTable /cf/apps/hk_cpy_tbl.tbl
-189B C000 0001 0000    ; Housekeeping Request for validate
-189B C000 0001 0000    ; Housekeeping Request for update
+9B18 00C0 0100 0000    ; Housekeeping Request for validate
+9B18 00C0 0100 0000    ; Housekeeping Request for update
 *
 * *** <sbsim.in> END HK TABLE TESTING ***
 *
@@ -161,7 +161,7 @@
 * <sbsim.in> SB RcvMsg Error causing HK App to Exit
 * -------------------------------------------------
 @ SET_SB_RETURN_CODE 5 0xca000006
-189A C000 0001 0000    ; NOOP Command
+9A18 00C0 0100 0000    ; NOOP Command
 *
 * *** <sbsim.in> END HK APP EXIT TESTING ***
 * ------------------------------------------
