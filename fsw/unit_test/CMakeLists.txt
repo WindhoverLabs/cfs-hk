@@ -43,7 +43,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/sbsim.in ${CMAKE_CURRENT_BINARY_DIR} 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/cf/apps)
 SET(CMAKE_CXX_ARCHIVE_CREATE "<CMAKE_AR> <OBJECTS> ${CMAKE_CURRENT_BINARY_DIR}/cf/apps")
 SET(CMAKE_C_ARCHIVE_CREATE "<CMAKE_AR> <OBJECTS> ${CMAKE_CURRENT_BINARY_DIR}/cf/apps")
-add_library(hk_cpy_tbl STATIC ../tables/hk_cpy_tbl.c)
+add_app(hk_cpy_tbl STATIC ../tables/hk_cpy_tbl.c)
 set_target_properties(hk_cpy_tbl PROPERTIES PREFIX "" SUFFIX ".tbl")
 add_custom_command(
 	TARGET hk_cpy_tbl 
